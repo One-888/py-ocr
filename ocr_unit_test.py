@@ -1,7 +1,7 @@
 import easyocr
 
 
-filename = "000005.png"
+filename = "000006.png"
 
 
 def ocr_process(filename):
@@ -21,7 +21,23 @@ def ocr_process(filename):
     return var_out
 
 
-r = ocr_process(filename)
+def ocr_process_single_value(filename):
 
-for i in r:
-    print(i)
+    # print("OCR Unit")
+    print(f"OCR Process .. {filename}")
+    reader = easyocr.Reader(["en"])
+    result = reader.readtext(filename)
+    # print(result)
+    for a, b, c in result:
+        return float(b.replace(",", ""))
+
+
+def main():
+    r = ocr_process(filename)
+
+    for i in r:
+        print(i)
+
+
+if __name__ == "__main__":
+    main()
